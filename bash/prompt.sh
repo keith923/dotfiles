@@ -26,8 +26,8 @@
 
 if [[ ! "${prompt_colors[@]}" ]]; then
   prompt_colors=(
-    "36" # information color
-    "37" # bracket color
+    "34" # information color
+    "30" # bracket color
     "31" # error color
   )
 
@@ -104,6 +104,14 @@ function prompt_svn() {
   fi
 }
 
+# Virtual Env
+function prompt_venv() {
+	prompt_getcolors
+	if [[ "$VIRTUAL_ENV" ]]; then
+		echo "$c1($c0`basename \"$VIRTUAL_ENV\"`$c1)$c9 "
+	fi
+}
+
 # Maintain a per-execution call stack.
 prompt_stack=()
 trap 'prompt_stack=("${prompt_stack[@]}" "$BASH_COMMAND")' DEBUG
@@ -135,6 +143,7 @@ function prompt_command() {
   # path: [user@host:path]
   PS1="$PS1$c1[$c0\u$c1@$c0\h$c1:$c0\w$c1]$c9"
   PS1="$PS1\n"
+  PS1="$PS1$(prompt_venv)"
   # date: [HH:MM:SS]
   PS1="$PS1$c1[$c0$(date +"%H$c1:$c0%M$c1:$c0%S")$c1]$c9"
   # exit code: 127
