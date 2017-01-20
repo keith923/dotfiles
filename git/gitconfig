@@ -1,6 +1,6 @@
 [user]
 	name = Keith T. Star
-	email = keith@uberfoo.com
+	email = keith@pnnl.gov
 [color]
 	ui = true
 [credential]
@@ -12,7 +12,12 @@
 	default = simple
 [status]
 	branch = true
-	showUntrackedFiles = no
+	showuntrackedFiles = all
+	submoduleSummary = true
 [alias]
-    l = log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(white bold)%s%Creset %C(white dim)(by %an %ar)%Creset'
+    l = log --graph --pretty=format:'%C(yellow)%h%Creset%C(blue)%d%Creset %C(black)%s%Creset %C(white bold)(by %an %ar)%Creset'
     ll = !git l --all
+[diff]
+	submodule = log
+[pull]
+	rebase = preserve
